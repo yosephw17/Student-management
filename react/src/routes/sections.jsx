@@ -11,6 +11,7 @@ export const LoginPage = lazy(() => import('src/pages/login'));
 export const ProductsPage = lazy(() => import('src/pages/products'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
 export const StudentPage = lazy(() => import('src/pages/student'));
+export const SProjects = lazy(() => import('src/pages/sprojects'));
 function PrivateRoute({ element }) {
   const isAuthenticated = !!localStorage.getItem('authToken'); // Check if the user is authenticated
   return isAuthenticated ? element : <Navigate to="/" replace />;
@@ -18,6 +19,16 @@ function PrivateRoute({ element }) {
 
 export default function Router() {
   const routes = useRoutes([
+    {
+      path: '/',
+      element: <LoginPage />,
+      index: true,
+    },
+    {
+      path: '/sprojects',
+      element: <SProjects />,
+      index: true,
+    },
     {
       path: '/',
       element: <LoginPage />,

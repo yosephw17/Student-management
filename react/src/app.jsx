@@ -24,6 +24,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Router from 'src/routes/sections';
 import ThemeProvider from 'src/theme';
 import HomePage from './sections/student/view/HomePage';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   return (
