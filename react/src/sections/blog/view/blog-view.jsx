@@ -1,16 +1,5 @@
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Unstable_Grid2';
-import Typography from '@mui/material/Typography';
-
-import { posts } from 'src/_mock/blog';
-
-import Iconify from 'src/components/iconify';
-
-import PostCard from '../post-card';
-import PostSort from '../post-sort';
-import PostSearch from '../post-search';
+import React from 'react';
+import { Container, Stack } from '@mui/material';
 import Header from 'src/layouts/dashboard/header';
 
 // ----------------------------------------------------------------------
@@ -22,11 +11,20 @@ export default function BlogView() {
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}></Stack>
       <header className="hero-section">
         <div className="hero-content">
-          <h1 className="hero-title">Welcome to Insa Cyber Talent Management</h1>
-          <p className="hero-subtitle">Empowering the Next Generation of Cyber Experts</p>
-          <a className="cta-button" href="#features">
-            Discover More
-          </a>
+          <div className="hero-text">
+            <h1 className="hero-title">Welcome to Insa Cyber Talent Management</h1>
+            <p className="hero-subtitle">Empowering the Next Generation of Cyber Experts</p>
+            <a className="cta-button" href="#features">
+              Discover More
+            </a>
+          </div>
+          <div className="hero-image">
+            <img
+              src="/assets/images/covers/background-1.png"
+              alt="Hero"
+              style={{ width: '100%', height: 'auto' }}
+            />
+          </div>
         </div>
       </header>
       <section id="features" className="features-section">

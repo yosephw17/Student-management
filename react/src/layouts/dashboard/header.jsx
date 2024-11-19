@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -25,11 +26,21 @@ import NotificationsPopover from './common/notifications-popover';
 export default function Header({ onOpenNav }) {
   const theme = useTheme();
   const lgUp = useResponsive('up', 'lg');
-  const [value, setValue] = useState(0);
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  // Determine which tab should be active based on the current path
+  const tabValue =
+    currentPath === '/'
+      ? 0
+      : currentPath === '/sprojects'
+      ? 1
+      : currentPath === '/snotifications'
+      ? 2
+      : false;
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
-    // Here you can add your routing logic
+    // Handle tab change if needed
   };
 
   const renderContent = (
@@ -44,44 +55,40 @@ export default function Header({ onOpenNav }) {
 
       <Box sx={{ flexGrow: 1 }}>
         <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}>
-          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}>
-            <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}>
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                textColor="inherit"
-                indicatorColor="primary"
-                aria-label="navigation tabs"
-                sx={{
-                  '& .MuiTabs-indicator': {
-                    backgroundColor: '#001f3f', // Deep blue-black color for the indicator
-                    height: '3px', // Make the indicator slightly thick
-                    borderRadius: '2px', // Rounded indicator edges
-                  },
-                  '& .MuiTab-root': {
-                    textTransform: 'none', // Keep the text normal
-                    fontWeight: '500', // Medium weight text
-                    fontSize: '16px', // Set a comfortable font size
-                    marginRight: '20px', // Add space between tabs
-                    color: '#001f3f', // Deep blue-black color for tab labels
-                    transition: 'color 0.4s ease, transform 0.3s ease', // Smooth color and scale transition
-                    '&.Mui-selected': {
-                      color: '#001f3f', // Same color for the selected tab
-                      transform: 'scale(1.15)', // Slightly enlarge the selected tab
-                    },
-                    '&:hover': {
-                      color: '#001f3f', // Same deep blue-black color on hover
-                      transform: 'scale(1.1)', // Slightly enlarge on hover
-                    },
-                  },
-                }}
-              >
-                <Tab label="Home" />
-                <Tab label="Projects" />
-                <Tab label="Notifications" />
-              </Tabs>
-            </Box>
-          </Box>
+          <Tabs
+            value={tabValue}
+            onChange={handleChange}
+            textColor="inherit"
+            indicatorColor="primary"
+            aria-label="navigation tabs"
+            sx={{
+              '& .MuiTabs-indicator': {
+                backgroundColor: '#001f3f',
+                height: '3px',
+                borderRadius: '2px',
+              },
+              '& .MuiTab-root': {
+                textTransform: 'none',
+                fontWeight: '500',
+                fontSize: '16px',
+                marginRight: '20px',
+                color: '#001f3f',
+                transition: 'color 0.4s ease, transform 0.3s ease',
+                '&.Mui-selected': {
+                  color: '#001f3f',
+                  transform: 'scale(1.15)',
+                },
+                '&:hover': {
+                  color: '#001f3f',
+                  transform: 'scale(1.1)',
+                },
+              },
+            }}
+          >
+            <Tab label="Home" to="/students" component={Link} />
+            <Tab label="MyProjects" to="/sprojects" component={Link} />
+            <Tab label="Notifications" to="/snotifications" component={Link} />
+          </Tabs>
         </Box>
       </Box>
 
